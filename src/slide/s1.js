@@ -1,6 +1,6 @@
 import React from 'react'
 
-// // JSX 
+// ________________________ JSX ________________________ 
 
 // const element = <h1>Hello, world!</h1>;
 
