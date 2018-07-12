@@ -1,53 +1,25 @@
 import React from 'react';
 
+import { incrementAction, decrementAction } from './../actions'
+
+import { connect } from 'react-redux';
+
 class Counter extends React.Component {
-  state = { count: 0 }
-
-  increment = () => {
-    this.setState({
-      count: this.state.count + 1
-    });
-  }
-
-  decrement = () => {
-    this.setState({
-      count: this.state.count - 1
-    });
-  }
+  
 
   render() {
     return (
       <div>
         <h2>Counter</h2>
         <div>
-          <button onClick={this.decrement}>-</button>
-          <span>  {this.state.count}  </span>
-          <button onClick={this.increment}>+</button>
+          <button onClick={this.props.decrement}>-</button>
+          <span>  {this.props.countProp}  </span>
+          <button onClick={this.props.increment}>+</button>
         </div>
       </div>
     )
   }
 }
-
-export default Counter;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -59,7 +31,9 @@ export default Counter;
  * @param {Object} state - current state of the Application
  * @returns {Object} containing the props to be used in the presentational component
  */
-export const mapStateToProps = state => ({});
+export const mapStateToProps = state => ({
+    countProp: state.counterStore.count
+});
   
   /**
    * Function that tells how to transform the current Redux store
@@ -69,6 +43,11 @@ export const mapStateToProps = state => ({});
    * @returns {Object} callback props that you want to inject into
    * the presentational component
    */
-  export const mapDispatchToProps = dispatch => ({});
+  export const mapDispatchToProps = dispatch => ({
+    increment: () => dispatch(incrementAction()),
+    decrement: () => dispatch(decrementAction())
+  });
 
 // connect
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter)

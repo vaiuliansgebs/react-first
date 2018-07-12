@@ -1,4 +1,6 @@
-export const initialState = {};
+export const initialState = {
+    count: 24
+};
   
   /**
    * App Redux reducer.
@@ -16,7 +18,13 @@ export const initialState = {};
     let newState = null;
   
     switch (action.type) {
-      case 'SOME_ACTION_TYPE':
+      case 'INCREMENT':
+      console.log(action)
+      newState = {count: state.count + 1}
+        break;
+
+    case 'DECREMENT':
+        newState = {count: state.count - 1}
         break;
       default:
         newState = state;

@@ -1,6 +1,10 @@
 import { createStore, combineReducers } from 'redux';
 
+import reducer from './reducer';
 
-const store;
+const store = createStore(combineReducers({
+    counterStore: reducer
+}),
+window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export default store;
